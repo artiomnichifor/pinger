@@ -84,9 +84,9 @@ export class UrlForm extends Component {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                url: 'loc',
-                expectedTime: 1,
-                pollingTime: 1
+                url: newItem.url,
+                expectedTime: newItem.pollingTime,
+                pollingTime: newItem.expectedTime
             })
         }
         )

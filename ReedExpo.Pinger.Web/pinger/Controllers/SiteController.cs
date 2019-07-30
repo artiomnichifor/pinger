@@ -6,6 +6,7 @@ using DbAccessLayer;
 using Domain;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using ReedExpo.Pinger.Web.Models;
 using ServiceLayer;
 
 namespace ReedExpo.Pinger.Web.Controllers
@@ -48,9 +49,9 @@ namespace ReedExpo.Pinger.Web.Controllers
         }
 
         [HttpPost("[action]")]
-        public void CreateUrl(string url, int pollingTime, int expectedTime)
+        public void CreateUrl(SiteModel siteModel)
         {
-            _serviceSite.CreateSite(new Site { Url = url, PollingTime = pollingTime, ExpectedTime = expectedTime });
+            _serviceSite.CreateSite(new Site { Url = siteModel.Url, PollingTime = siteModel.PollingTime, ExpectedTime = siteModel.ExpectedTime });
         }
 
         [HttpGet("[action]")]

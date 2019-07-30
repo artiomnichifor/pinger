@@ -7,6 +7,7 @@ export class UrlList extends Component {
         super(props);
         this.state = { sites: [], loading: true };
 
+
         fetch('site/GetAllSites')
             .then(response => response.json())
             .then(data => {
