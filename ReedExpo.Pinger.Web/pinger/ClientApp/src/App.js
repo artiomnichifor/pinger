@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router';
 import { Layout } from './components/Layout';
+import { UrlList } from './components/UrlList';
 
 
 export default class App extends Component {
@@ -8,8 +9,8 @@ export default class App extends Component {
 
   render () {
     return (
-      <Layout>
-
+        <Layout>
+            <Route exact path='/' component={UrlList} />
       </Layout>
     );
   }

@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DbAccessLayer.Migrations
 {
-    public partial class InitialCreate : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +14,8 @@ namespace DbAccessLayer.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Url = table.Column<string>(maxLength: 30, nullable: false),
-                    RollingTime = table.Column<string>(nullable: true)
+                    ExpectedTime = table.Column<int>(nullable: false),
+                    PollingTime = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -26,7 +28,7 @@ namespace DbAccessLayer.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    UpTime = table.Column<string>(type: "Date", nullable: false, defaultValueSql: "GetDate()"),
+                    UpTime = table.Column<DateTime>(type: "Date", nullable: false, defaultValueSql: "GetDate()"),
                     SiteId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

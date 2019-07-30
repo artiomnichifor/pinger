@@ -11,7 +11,6 @@ using ServiceLayer;
 namespace ReedExpo.Pinger.Web.Controllers
 {
     [ApiController]
-    //[Route("[controller]")]
     [Route("[controller]")]
     public class SiteController : Controller
     {
@@ -32,20 +31,33 @@ namespace ReedExpo.Pinger.Web.Controllers
         [HttpGet("[action]")]
         public async Task Create()
         {
-            _serviceSite.CreateSite(new Site { Url = "localhost", RollingTime = "1" });
+            _serviceSite.CreateSite(new Site { Url = "localhost", PollingTime = 1, ExpectedTime = 1 });
             //await pingerContext.SaveChangesAsync();
         }
 
         [HttpGet("[action]")]
         public void Creates()
         {
-            _serviceSite.CreateSite(new Site { Url = "localhost2", RollingTime = "2" });
+            _serviceSite.CreateSite(new Site { Url = "localhost2", PollingTime = 2, ExpectedTime = 2 });
         }
 
         [HttpGet("[action]")]
         public void CreateAPing()
         {
             _servicePing.CreatePing(new Ping { UpTime = DateTime.Now, SiteId = 2 });
+        }
+
+        [HttpPost("[action]")]
+        public void CreateUrl(string url, int pollingTime, int expectedTime)
+        {
+            _serviceSite.CreateSite(new Site { Url = url, PollingTime = pollingTime, ExpectedTime = expectedTime });
+        }
+
+        [HttpGet("[action]")]
+        public IEnumerable<SiteDto> GetAllSites()
+        {
+            var siteDtos = _serviceSite.GetAllSites();
+            return siteDtos;
         }
 
     }

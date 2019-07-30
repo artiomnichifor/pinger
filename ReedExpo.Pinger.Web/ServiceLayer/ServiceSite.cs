@@ -29,7 +29,8 @@ namespace ServiceLayer
             var site = context.Sites.SingleOrDefault(s => s.Id == id);
 
             site.Url = siteModel.Url;
-            site.RollingTime = siteModel.RollingTime;
+            site.PollingTime = siteModel.PollingTime;
+            site.ExpectedTime = siteModel.ExpectedTime;
 
             context.Update<Site>(site);
             context.SaveChanges();
@@ -47,7 +48,21 @@ namespace ServiceLayer
             return result;
         }
 
-        //public IList<SiteDto> GetAllSites()
+
+        public IList<SiteDto> GetAllSites()
+        {
+            var sites = from s in context.Sites.ToList()
+                            select new SiteDto()
+                            {
+                                Id = s.Id,
+                                Url = s.Url,
+                                PollingTime = s.PollingTime,
+                                ExpectedTime = s.ExpectedTime,
+                            };
+
+
+            return sites.ToList();
+        }
 
 
     }
