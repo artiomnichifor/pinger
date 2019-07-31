@@ -50,7 +50,7 @@ namespace pinger
             services.AddScoped<IServiceSite, ServiceSite>();
             services.AddScoped<IServicePing, ServicePing>();
             services.AddHostedService<TimedHostedService>();
-            services.AddSingleton<IDbControlService, DbControlServise>();
+            //services.AddSingleton<IDbControlService, DbControlServise>();
 
 
         }

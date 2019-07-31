@@ -10,5 +10,6 @@ namespace ServiceLayer
         void EditSite(Site siteModel, int id);
         Site GetSite(long id);
         IList<SiteDto> GetAllSites();
+        IList<FullSiteDto> GetAllFullSites();
     }
 }

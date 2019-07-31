@@ -8,5 +8,7 @@ namespace ServiceLayer
     {
         private bool trigger = true;
         public bool Trigger { get { return trigger; } set { trigger = value; } }
+
+
     }
 }

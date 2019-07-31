@@ -19,6 +19,8 @@ namespace ReedExpo.Pinger.Web.Controllers
         private readonly IServicePing _servicePing;
         private readonly ILogger<SiteController> _logger;
 
+        
+
         public SiteController(ILogger<SiteController> logger, IServiceSite serviceSite, IServicePing servicePing)
         {
             this._logger = logger;
@@ -50,10 +52,10 @@ namespace ReedExpo.Pinger.Web.Controllers
         }
 
         [HttpGet("[action]")]
-        public IEnumerable<SiteDto> GetAllSites()
+        public IEnumerable<FullSiteDto> GetAllSites()
         {
-            var siteDtos = _serviceSite.GetAllSites();
-            return siteDtos;
+            var fullSiteDtos = _serviceSite.GetAllFullSites();
+            return fullSiteDtos;
         }
 
     }

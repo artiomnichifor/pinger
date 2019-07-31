@@ -8,7 +8,7 @@ namespace Domain
     {
         public int Id { get; set; }
         public string Url { get; set; }
-        public double PollingTime { get; set; }
+        public double UpTime { get; set; }
         public double AverageRequestTime { get; set; }
         //???little bars or whatever
         //public ICollection<Ping> Pings { get; set; }

@@ -21,16 +21,16 @@ export class UrlList extends Component {
                 <thead>
                     <tr>
                         <th>Url</th>
-                        <th>Polling Time</th>
-                        <th>Expected Time</th>
+                        <th>Uptime</th>
+                        <th>Average Request Time</th>
                     </tr>
                 </thead>
                 <tbody>
                     {sites.map(sites =>
                         <tr key={sites.url}>
                             <td>{sites.url}</td>
-                            <td>{sites.pollingTime}</td>
-                            <td>{sites.expectedTime}</td>
+                            <td>{sites.upTime}</td>
+                            <td>{sites.averageRequestTime}</td>
                         </tr>
                     )}
                 </tbody>
