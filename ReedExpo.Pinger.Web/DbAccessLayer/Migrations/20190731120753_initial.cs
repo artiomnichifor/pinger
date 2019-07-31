@@ -15,7 +15,8 @@ namespace DbAccessLayer.Migrations
                         .Annotation("Sqlite:Autoincrement", true),
                     Url = table.Column<string>(maxLength: 30, nullable: false),
                     ExpectedTime = table.Column<int>(nullable: false),
-                    PollingTime = table.Column<int>(nullable: false)
+                    PollingTime = table.Column<int>(nullable: false),
+                    LastCheckedTime = table.Column<DateTime>(type: "Date", nullable: false, defaultValueSql: "GetDate()")
                 },
                 constraints: table =>
                 {

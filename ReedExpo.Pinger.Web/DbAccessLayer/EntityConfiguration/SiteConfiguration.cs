@@ -18,6 +18,11 @@ namespace DbAccessLayer
             builder.HasMany(x => x.Pings)
                 .WithOne(x => x.Site)
                 .HasForeignKey(x => x.SiteId);
+
+            builder.Property(x => x.LastCheckedTime)
+                .IsRequired()
+                .HasColumnType("Date")
+                .HasDefaultValueSql("GetDate()");
         }
 
     }

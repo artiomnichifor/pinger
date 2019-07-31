@@ -31,6 +31,7 @@ namespace ServiceLayer
             site.Url = siteModel.Url;
             site.PollingTime = siteModel.PollingTime;
             site.ExpectedTime = siteModel.ExpectedTime;
+            site.LastCheckedTime = siteModel.LastCheckedTime;
 
             context.Update<Site>(site);
             context.SaveChanges();
@@ -58,6 +59,7 @@ namespace ServiceLayer
                                 Url = s.Url,
                                 PollingTime = s.PollingTime,
                                 ExpectedTime = s.ExpectedTime,
+                                LastTimeChecked = s.LastCheckedTime
                             };
 
 

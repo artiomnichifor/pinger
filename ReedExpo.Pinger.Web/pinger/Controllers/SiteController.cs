@@ -51,7 +51,7 @@ namespace ReedExpo.Pinger.Web.Controllers
         [HttpPost("[action]")]
         public void CreateUrl(SiteModel siteModel)
         {
-            _serviceSite.CreateSite(new Site { Url = siteModel.Url, PollingTime = siteModel.PollingTime, ExpectedTime = siteModel.ExpectedTime });
+            _serviceSite.CreateSite(new Site { Url = siteModel.Url, PollingTime = siteModel.PollingTime, ExpectedTime = siteModel.ExpectedTime, LastCheckedTime = DateTime.Now });
         }
 
         [HttpGet("[action]")]

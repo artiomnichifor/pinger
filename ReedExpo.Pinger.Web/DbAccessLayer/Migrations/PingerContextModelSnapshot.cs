@@ -42,6 +42,11 @@ namespace DbAccessLayer.Migrations
 
                     b.Property<int>("ExpectedTime");
 
+                    b.Property<DateTime>("LastCheckedTime")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("Date")
+                        .HasDefaultValueSql("GetDate()");
+
                     b.Property<int>("PollingTime");
 
                     b.Property<string>("Url")

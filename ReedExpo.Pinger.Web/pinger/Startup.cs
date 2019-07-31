@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ServiceLayer;
 using System.IO;
+using HostedServices;
 
 namespace pinger
 {
@@ -48,6 +49,7 @@ namespace pinger
 
             services.AddScoped<IServiceSite, ServiceSite>();
             services.AddScoped<IServicePing, ServicePing>();
+            services.AddHostedService<TimedHostedService>();
 
 
         }

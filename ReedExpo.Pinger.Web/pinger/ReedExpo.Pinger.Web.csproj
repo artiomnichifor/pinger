@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DbAccessLayer\DbAccessLayer.csproj" />
+    <ProjectReference Include="..\HostedServices\HostedServices.csproj" />
     <ProjectReference Include="..\ServiceLayer\ServiceLayer.csproj" />
   </ItemGroup>
 

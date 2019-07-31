@@ -10,5 +10,6 @@ namespace Domain
         public string Url { get; set; }
         public int ExpectedTime { get; set; }
         public int PollingTime { get; set; }
+        public DateTime LastTimeChecked { get; set; }
     }
 }
