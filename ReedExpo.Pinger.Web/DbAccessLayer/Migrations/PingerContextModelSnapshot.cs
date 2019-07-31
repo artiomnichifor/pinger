@@ -21,12 +21,11 @@ namespace DbAccessLayer.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<double>("ResponseTime");
+
                     b.Property<int>("SiteId");
 
-                    b.Property<DateTime>("UpTime")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("Date")
-                        .HasDefaultValueSql("GetDate()");
+                    b.Property<string>("Status");
 
                     b.HasKey("Id");
 

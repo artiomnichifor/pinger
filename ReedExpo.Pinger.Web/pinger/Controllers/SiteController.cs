@@ -42,16 +42,11 @@ namespace ReedExpo.Pinger.Web.Controllers
             _serviceSite.CreateSite(new Site { Url = "localhost2", PollingTime = 2, ExpectedTime = 2 });
         }
 
-        [HttpGet("[action]")]
-        public void CreateAPing()
-        {
-            _servicePing.CreatePing(new Ping { UpTime = DateTime.Now, SiteId = 2 });
-        }
-
         [HttpPost("[action]")]
         public void CreateUrl(SiteModel siteModel)
         {
             _serviceSite.CreateSite(new Site { Url = siteModel.Url, PollingTime = siteModel.PollingTime, ExpectedTime = siteModel.ExpectedTime, LastCheckedTime = DateTime.Now });
+
         }
 
         [HttpGet("[action]")]

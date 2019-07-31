@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DbAccessLayer.Migrations
 {
     [DbContext(typeof(PingerContext))]
-    [Migration("20190731120753_initial")]
+    [Migration("20190731151413_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,12 +23,11 @@ namespace DbAccessLayer.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<double>("ResponseTime");
+
                     b.Property<int>("SiteId");
 
-                    b.Property<DateTime>("UpTime")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("Date")
-                        .HasDefaultValueSql("GetDate()");
+                    b.Property<string>("Status");
 
                     b.HasKey("Id");
 

@@ -29,7 +29,8 @@ namespace ServiceLayer
         {
             var ping = context.Pings.SingleOrDefault(p => p.Id == id);
 
-            ping.UpTime = pingModel.UpTime;
+            ping.ResponseTime = pingModel.ResponseTime;
+            ping.Status = ping.Status;
 
             context.Update<Ping>(ping);
             context.SaveChanges();

@@ -11,10 +11,6 @@ namespace DbAccessLayer
 
             builder.HasKey(x => x.Id);
 
-            builder.Property(x => x.UpTime)
-                .IsRequired()
-                .HasColumnType("Date")
-                .HasDefaultValueSql("GetDate()");
 
 
         }

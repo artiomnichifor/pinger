@@ -29,7 +29,8 @@ namespace DbAccessLayer.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    UpTime = table.Column<DateTime>(type: "Date", nullable: false, defaultValueSql: "GetDate()"),
+                    ResponseTime = table.Column<double>(nullable: false),
+                    Status = table.Column<string>(nullable: true),
                     SiteId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

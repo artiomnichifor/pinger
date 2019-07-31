@@ -34,16 +34,16 @@ namespace HostedServices
         {
             _logger.LogInformation("Timed Background Service is starting.");
 
-            // Create a new scope to retrieve scoped services
-            using (var scope = _serviceProvider.CreateScope())
-            {
-                // Get the DbContext instance
-                var _serviceSite = scope.ServiceProvider.GetRequiredService<IServiceSite>();
-                 _targets = _serviceSite.GetAllSites();
+            //// Create a new scope to retrieve scoped services
+            //using (var scope = _serviceProvider.CreateScope())
+            //{
+            //    // Get the DbContext instance
+            //    var _serviceSite = scope.ServiceProvider.GetRequiredService<IServiceSite>();
+            //    _targets = _serviceSite.GetAllSites();
 
-                //Do the migration asynchronously
-                //await myDbContext.Database.MigrateAsync();
-            }
+            //    //Do the migration asynchronously
+            //    //await myDbContext.Database.MigrateAsync();
+            //}
 
             
 
@@ -59,16 +59,20 @@ namespace HostedServices
             using (var scope = _serviceProvider.CreateScope())
             {
                 var _serviceSite = scope.ServiceProvider.GetRequiredService<IServiceSite>();
+                var _servicePing = scope.ServiceProvider.GetRequiredService<IServicePing>();
+
+
 
                 // iterate over the _targets, check if any timer is active now
                 // if so, launch a background task(fire and forget) that does a http call into the target system
                 // measures the response time, and records that to the db
-                foreach (var target in _targets)
+                foreach (var target in _serviceSite.GetAllSites())
                 {
                     TimeSpan timeout = TimeSpan.FromSeconds((int)target.PollingTime);
                     DateTime lastStartTime = (target.LastTimeChecked == null ? DateTime.Now : target.LastTimeChecked);
                     if (DateTime.Now - lastStartTime > timeout) // check if the target timer is active
                     {
+                        target.LastTimeChecked = DateTime.Now;
                         // launch fire and forget task
                         await Task.Run(async () =>
                         {
@@ -76,13 +80,19 @@ namespace HostedServices
                             using (var client = new HttpClient())
                             {
                                 var response = await client.GetAsync(target.Url);
+                                stopWatch.Stop();
                                 if (response.IsSuccessStatusCode)
                                 {
+                                    
                                     _logger.LogInformation($"{target.Url} is pinged");
                                     //will add constructor
                                     Site site = new Site() { Url = target.Url, PollingTime = target.PollingTime, ExpectedTime = target.ExpectedTime, LastCheckedTime = DateTime.Now };
                                     _serviceSite.EditSite(site, target.Id);
-                                    target.LastTimeChecked = DateTime.Now;
+                                    //here too
+                                    Ping ping = new Ping() { Status = "success", ResponseTime = (double)stopWatch.Elapsed.TotalSeconds, SiteId = target.Id };
+                                    _servicePing.CreatePing(ping);
+
+                                    
                                 }
                             }
                             // Start timespan

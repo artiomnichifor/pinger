@@ -5,8 +5,8 @@ namespace Domain
     public class Ping
     {
         public int Id { get; set; }
-        //TimeSpan
-        public DateTime UpTime { get; set; }
+        public double ResponseTime { get; set; }
+        public string Status { get; set; }
 
         public Ping()
         {
