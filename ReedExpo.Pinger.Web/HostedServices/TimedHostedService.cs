@@ -20,7 +20,7 @@ namespace HostedServices
         private readonly IServiceProvider _serviceProvider;
 
         //private readonly IServiceSite _serviceSite;
-        private IList<SiteDto> _targets;
+        //private IList<SiteDto> _targets;
 
 
         public TimedHostedService(ILogger<TimedHostedService> logger, IServiceProvider serviceProvider)

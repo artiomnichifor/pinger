@@ -99,11 +99,11 @@ namespace ServiceLayer
                             Id = s.Id,
                             Url = s.Url,
                             UpTime = (from p in _context.Pings.ToList()
-                                      where s.Id == p.SiteId
+                                      where s.Id == p.SiteId &&
+                                                 p.Status == "success"
                                       select p).Count() / 
                                                 (from p in _context.Pings.ToList()
-                                                 where s.Id == p.SiteId &&
-                                                 p.Status == "success"
+                                                 where s.Id == p.SiteId 
                                                  select p).Count() * 100,
                             AverageRequestTime = 
                                     (from p in _context.Pings.ToList()
